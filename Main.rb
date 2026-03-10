@@ -1,38 +1,4 @@
 
-=begin
-In this assignment, you're going to use the layer class you put together a few weeks ago (compare yours to your group members, are they the same or close?)
-and implement a full simulation of the OSI Layer model.  Now, obviously nobody actually creates a stack like this in production, because it'd be too slow.
-There are lots of shortcuts we take in practice.  But, it all starts with a solid understanding of the abstraction, encapsulation, polymorphism, and
-inheritance involved in the whole process.  It's like Networks are a microcosm of OOP (or OOP is a microcosm of Networks).
-
-Your job is to, with your group, create a system that will take any layer 7 input and, through internal mechanics, logging, and verbose outputs to the screen,
-document what each layer is doing.  Each layer needs to do at least one realistic thing, but it's up to you to handle that.
-
-Groups should be formed from 1-2 groups from the first project.
-
-Side Note
-
-Assignment 4, 5, and/or 6 should all lead into this project and act as the application layer.
-You are welcome to do so, but it is entirely too risky to include as a hard requirement.
-But, you've reached peak skillset if your HTTP server from the last few assignments slots right in here.
-Again, not a hard requirement.
-
-Instructions
-
-You're going to simulate the entire OSI Stack.  Because it's a simulation, the point is not whether you come up with the same answer,
-the point is: are you coming up with it in the correct way.
-
-    It is up to you to define and implement what each layer does.
-    Some layers are more trivial than others, but it should be explicit what they're doing.
-    Provide a TCP/IP mode that does the same thing, but groups it like TCP/IP instead of OSI.
-    Before implementation, double check with Project 3 that what you produce will appropriately feed into Project 3.
-    Test your code with several realistic examples of common application layer protocol requests (Project 1 is an acceptable tool).
-    Submit your code for your program.
-    Also include your group members' names.  Each member will submit, more or less, the same code but you are welcome
-    to add any narrative write up that you believe explains it, in your own words.
-    Also include a textual log of your stack in operation.
-=end
-
 require_relative 'UserInterface'
 require_relative 'Simulation/OSISimulation'
 require_relative 'Simulation/TCPIPSimulation'
@@ -81,5 +47,6 @@ class Main
       puts "Couldn't determine model type"
     end
   end
+
 
 end
