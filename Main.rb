@@ -1,7 +1,12 @@
 
-require_relative 'UserInterface'
-require_relative 'Simulation/OSISimulation'
-require_relative 'Simulation/TCPIPSimulation'
+=begin
+  Main entry point for the program - Example input - GET /http://www.google.com HTTP/1.1
+
+=end
+
+require_relative '../UI/rInterface'
+require_relative '../Simulation/OSI../Simulation'
+require_relative '../Simulation/TCPIP../Simulation'
 
 class Main
 
@@ -24,7 +29,7 @@ class Main
       when action_type == "send";
         puts "type - sending data"
         data = ui.get_data_from_user_to_send
-        simulation.send_data(data)
+        simulation.send(data)
 
       when action_type == "down"
 
@@ -47,6 +52,5 @@ class Main
       puts "Couldn't determine model type"
     end
   end
-
 
 end

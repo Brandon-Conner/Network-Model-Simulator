@@ -1,0 +1,32 @@
+
+    Network Stack Models
+        Commonalities
+            - As data moves down the stack, it is encapsulated with layer specific data before being sent to the next layer.
+            - As data moves up the stack, it is decapsulated from the layer specific data before being sent to the next layer.
+
+
+	O S I   M O D E L   I M P L E M E N T A T I O N 
+	-------------------------------------------------------
+
+	Layer 7   -   Application
+	Layer 6   -   Presentation
+	Layer 5   -   Session
+	Layer 4   -   Transport
+	Layer 3   -   Network
+	Layer 2   -   Data Link
+	Layer 1   -   Physical
+
+	-------------------------------------------------------
+
+
+
+
+	T C P / I P   I M P L E M E N T A T I O N 
+	-------------------------------------------------------
+
+    Layer 4   -   Application
+    Layer 3   -   Transport
+    Layer 2   -   Internet
+    Layer 1   -   Network Access
+
+	-------------------------------------------------------

@@ -6,9 +6,14 @@
 module Protocol
 
 
-  def initialize(regex)
+  def initialize(id, regex)
+    @id = id
     @regex = regex
     @regex_groups = {}
+  end
+
+  def matches_id?(id)
+    return @id == id
   end
 
   # Check the given expression against the regex and regex_groups set within the protocol definition

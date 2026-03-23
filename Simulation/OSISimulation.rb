@@ -1,12 +1,13 @@
+require_relative '../../Abstraction/eSimulation'
+require_relative '../../OSI/Layer/OSIApplicationLayer/OSIApplicationLayer'
+require_relative '../../OSI/Layer/OSIDataLinkLayer'
+require_relative '../../OSI/Layer/OSITransportLayer'
+require_relative '../../OSI/Layer/OSINetworkLayer'
+require_relative '../../OSI/Layer/OSIPresentationLayer'
+require_relative '../../OSI/Layer/OSISessionLayer'
+require_relative '../../OSI/Layer/OSIPhysicalLayer'
 
-require_relative 'BaseSimulation'
-require_relative '../OSI/OSIApplicationLayer/OSIApplicationLayer'
-require_relative '../OSI/OSIDataLinkLayer'
-require_relative '../OSI/OSITransportLayer'
-require_relative '../OSI/OSINetworkLayer'
-require_relative '../OSI/OSIPresentationLayer'
-require_relative '../OSI/OSISessionLayer'
-require_relative '../OSI/OSIPhysicalLayer'
+# example use : call send method with argument : GET /https://www.google.com HTTP/1.1
 
 class OSISimulation < BaseSimulation
 
@@ -21,15 +22,28 @@ class OSISimulation < BaseSimulation
        OSIApplicationLayer.new,
       ]
     )
+    @current_layer_index = 0
+    @current_protocol_data_unit = nil
   end
 
 
-  def start_simulation_sending_data(data)
-    send_data(data)
+  def send(data)
+    @current_protocol_data_unit = data
+    puts @current_protocol_data_unit
+    @current_layer_index = @stack.length - 1
+
+    while (@current_layer_index > 0)
+      @current_protocol_data_unit = @stack[@current_layer_index].receive_from_next_upper_layer(@current_protocol_data_unit)
+      @current_protocol_data_unit = @stack[@current_layer_index].encapsulate(@current_protocol_data_unit)
+      @current_protocol_data_unit = @stack[@current_layer_index].send_to_next_lower_layer(@current_protocol_data_unit)
+      @current_layer_index=-1
+    end
   end
 
-  def start_simulation_receiving_data(data)
-    receive_data(data)
+
+
+  def receive(data)
+
   end
 
 

@@ -18,7 +18,7 @@ Example POST request
 
 =end
 
-require_relative 'Protocol'
+require_relative '../../Abstraction/tocol'
 
 class HTTPSProtocolHandler
   include Protocol
@@ -29,8 +29,10 @@ class HTTPSProtocolHandler
   URL_REGEX = %r{\A/https?://[^\s/$.?#].[^\s]*\z}i     # The target/path section of the protocol format
   VERSION_REGEX = %r{\AHTTP\/\d\.\d}                  # The version section of the protocol format
 
+  PROTOCOL_ID = "HTTPS"
+
   def initialize
-    super(PROTOCOL_REGEX)
+    super(PROTOCOL_ID, PROTOCOL_REGEX)
     add_regex_group(:method)
     add_to_group(:method, :GET, "GET")
     add_to_group(:method, :POST, "POST")
@@ -38,6 +40,7 @@ class HTTPSProtocolHandler
     add_to_group(:target, :URL, URL_REGEX)
     add_regex_group(:version)
     add_to_group(:version, :ANY, VERSION_REGEX)
+
   end
 
 end

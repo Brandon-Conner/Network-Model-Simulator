@@ -1,4 +1,4 @@
-require_relative 'Output'
+require_relative './tput'
 
 class UserInterface
 

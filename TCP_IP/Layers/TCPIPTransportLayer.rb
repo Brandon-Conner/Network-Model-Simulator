@@ -7,13 +7,13 @@ class TCPIPTransportLayer < BaseNetworkLayer
   end
 
 
-  def add_header
+  def encapsulate(data)
 
   end
 
 
 
-  def strip_header(data)
+  def decapsulate(data)
 
   end
 

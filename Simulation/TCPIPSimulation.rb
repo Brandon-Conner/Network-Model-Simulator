@@ -1,5 +1,4 @@
-
-require_relative 'BaseSimulation'
+require_relative '../../Abstraction/eSimulation'
 
 class TCPIPSimulation < BaseSimulation
 
