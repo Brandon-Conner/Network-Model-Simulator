@@ -1,6 +1,6 @@
-require_relative '../../../Abstraction/eNetworkLayer'
-=begin
+require_relative '../../Abstraction/NetworkLayer'
 
+=begin
 Accepts packets from the network layer and encapsulates them into "frames,"
 adding physical addresses (MAC addresses) and error-checking information (FCS)
 

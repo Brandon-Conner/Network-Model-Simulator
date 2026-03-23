@@ -18,7 +18,7 @@ Example POST request
 
 =end
 
-require_relative '../../Abstraction/tocol'
+require_relative '../Abstraction/Protocol'
 
 class HTTPSProtocolHandler
   include Protocol

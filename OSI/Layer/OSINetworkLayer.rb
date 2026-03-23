@@ -1,4 +1,4 @@
-require_relative '../../../Abstraction/eNetworkLayer'
+require_relative '../../Abstraction/NetworkLayer'
 
 =begin
 Accepts segments or datagrams from the transport layer and encapsulates them into "packets," adding logical addressing (IP addresses) for routing

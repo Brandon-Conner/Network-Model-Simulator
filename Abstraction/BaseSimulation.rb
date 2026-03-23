@@ -1,4 +1,4 @@
-require_relative '../UI/roject2/UI/Output'
+require_relative '../UI/Output'
 
 class BaseSimulation
 

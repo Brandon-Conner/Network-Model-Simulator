@@ -5,7 +5,7 @@ adding a header that includes source/destination port numbers.
 TCP uses "segments" (for reliability), while UDP uses "datagrams".
 =end
 
-require_relative '../../../Abstraction/eNetworkLayer'
+require_relative '../../Abstraction/NetworkLayer'
 
 
 class OSITransportLayer < BaseNetworkLayer

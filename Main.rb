@@ -4,9 +4,9 @@
 
 =end
 
-require_relative '../UI/rInterface'
-require_relative '../Simulation/OSI../Simulation'
-require_relative '../Simulation/TCPIP../Simulation'
+require_relative 'UI/UserInterface'
+require_relative 'Simulation/OSISimulation'
+require_relative 'Simulation/TCPIPSimulation'
 
 class Main
 

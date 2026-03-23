@@ -6,7 +6,7 @@
     need to be done.
 =end
 
-require_relative '../../../Abstraction/eNetworkLayer'
+require_relative '../../Abstraction/NetworkLayer'
 require_relative '../../UI/Output'
 
 class OSIPresentationLayer < BaseNetworkLayer

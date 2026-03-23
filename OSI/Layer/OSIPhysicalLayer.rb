@@ -1,4 +1,4 @@
-require_relative '../../../Abstraction/eNetworkLayer'
+require_relative '../../Abstraction/NetworkLayer'
 
 # Physical Layer(1) of the OSI network model
 class OSIPhysicalLayer < BaseNetworkLayer

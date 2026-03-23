@@ -1,4 +1,4 @@
-require_relative '../../../../Abstraction/eNetworkLayer'
+require_relative '../../../Abstraction/BaseNetworkLayer'
 require_relative '../../../Protocol/ProtocolRegistryTable'
 require_relative '../../../Protocol/HTTPSProtocolHandler'
 Dir["./lib/*.rb"].each { |file| require file } # Recursively require all files in current directory

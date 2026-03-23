@@ -1,11 +1,11 @@
-require_relative '../../Abstraction/eSimulation'
-require_relative '../../OSI/Layer/OSIApplicationLayer/OSIApplicationLayer'
-require_relative '../../OSI/Layer/OSIDataLinkLayer'
-require_relative '../../OSI/Layer/OSITransportLayer'
-require_relative '../../OSI/Layer/OSINetworkLayer'
-require_relative '../../OSI/Layer/OSIPresentationLayer'
-require_relative '../../OSI/Layer/OSISessionLayer'
-require_relative '../../OSI/Layer/OSIPhysicalLayer'
+require_relative '../Abstraction/BaseSimulation'
+require_relative '../OSI/Layer/OSIApplicationLayer/OSIApplicationLayer'
+require_relative '../OSI/Layer/OSIDataLinkLayer'
+require_relative '../OSI/Layer/OSITransportLayer'
+require_relative '../OSI/Layer/OSINetworkLayer'
+require_relative '../OSI/Layer/OSIPresentationLayer'
+require_relative '../OSI/Layer/OSISessionLayer'
+require_relative '../OSI/Layer/OSIPhysicalLayer'
 
 # example use : call send method with argument : GET /https://www.google.com HTTP/1.1
 

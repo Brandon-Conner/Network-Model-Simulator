@@ -8,7 +8,7 @@
 
 =end
 
-require_relative '../../../Abstraction/eNetworkLayer'
+require_relative '../../Abstraction/NetworkLayer'
 
 class OSISessionLayer < BaseNetworkLayer
 

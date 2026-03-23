@@ -1,4 +1,4 @@
-require_relative './tworkLayer'
+require_relative './NetworkLayer'
 =begin
 	abstraction module for representing a distinct layer of the network stack
 =end
