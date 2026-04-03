@@ -17,26 +17,31 @@ class OSIPresentationLayer < BaseNetworkLayer
   end
 
   def encapsulate(data)
-
+    log(data)
+    data
   end
 
   def decapsulate(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_upper_layer(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_lower_layer(data)
+    log(data)
     data
   end
 
   # When data is received from the application layer(sending data)
   def receive_from_next_upper_layer(data)
     @data = data
-    log("Received by Presentation layer")
+    log(data)
     check_for_utf8(data)
+    data
   end
 
   def check_for_utf8(data)
@@ -44,11 +49,12 @@ class OSIPresentationLayer < BaseNetworkLayer
   end
 
   def receive_from_next_lower_layer(data)
-
+    log(data)
+    data
   end
 
 
   def log(data)
-    Output::print_with_delay(data)
+    super(data)
   end
 end

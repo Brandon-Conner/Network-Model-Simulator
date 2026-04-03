@@ -15,30 +15,36 @@ class OSINetworkLayer < BaseNetworkLayer
 
 
   def encapsulate(data)
-
+    log(data)
+    data
   end
 
   def decapsulate(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_upper_layer(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_lower_layer(data)
-
+    log(data)
+    data
   end
 
   def receive_from_next_upper_layer(data)
-
+    log(data)
+    data
   end
 
   def receive_from_next_lower_layer(data)
-
+    log(data)
+    data
   end
 
   def log(data)
-
+    super(data)
   end
 end

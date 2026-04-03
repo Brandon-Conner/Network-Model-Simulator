@@ -19,15 +19,18 @@ class OSIApplicationLayer < BaseNetworkLayer
 
   def encapsulate(data)
     log(data)
+    data
   end
 
   def decapsulate(data)
     log(data)
+    data
   end
 
   # This is where receiving data and moving up the stack would end, so return the data to the main control point
   def send_to_next_upper_layer(data)
     log(data)
+    data
   end
 
   #
@@ -38,6 +41,7 @@ class OSIApplicationLayer < BaseNetworkLayer
 
   # This is the entry point for sending data in an OSI simulation.
   # A check should be made to ensure that the request follows known protocol formats.
+  # As of now, the method assumes that any matching protocol is HTTPS.
   def receive_from_next_upper_layer(data)
     log(data)
     # Ensure the data format matches an accepted protocol format
@@ -49,6 +53,7 @@ class OSIApplicationLayer < BaseNetworkLayer
     end
 
     @data[:protocol_id] = "HTTPS"
+    @data[:payload] = data
     @data
 
 

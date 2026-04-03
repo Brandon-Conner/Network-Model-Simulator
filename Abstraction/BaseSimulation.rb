@@ -1,4 +1,4 @@
-require_relative '../UI/Output'
+require_relative '../UI/UILogger'
 
 class BaseSimulation
 
@@ -6,28 +6,37 @@ class BaseSimulation
   # Used to construct the network stack for a simulation
   def initialize(stack = [])
     @stack = stack
+    @current_layer_index = 0
+    @current_protocol_data_unit = nil
+    @tcp_handshake_completed = false
+    @tls_handshake_completed = false
+
+  end
+
+
+  def perform_tcp_handshake
+    raise NotImplementedError, "#{self.class} must implement #perform_tcp_handshake!"
+  end
+
+  def perform_tls_handshake
+    raise NotImplementedError, "#{self.class} must implement #perform_tls_handshake!"
   end
 
 
   # Simulate sending data through the network stack starting from the top
-  def send_data(data)
+  def send_data(data, start_index, end_index)
 
-    data_ref = data
+    log("Beginning a traversal of layers #{start_index} to #{end_index} with data #{data}")
 
-    top_layer_index = @stack.length - 1 # Set the top layer index to stack length - 1
-
-    @stack[top_layer_index].receive_from_next_upper_layer(data) # Call receive on the top layer(input validation)
+    @current_protocol_data_unit = data
 
 
-    top_layer_index.downto(1) do |index| # Send the data down the layers
-      # Send the data to the next lower layer
-      data = @stack[index].encapsulate(data)
-      @stack[index - 1].receive_from_next_upper_layer(  @stack[index].send_to_next_lower_layer(data)  )
+    while @current_layer_index > 0
+      @current_protocol_data_unit = @stack[@current_layer_index].receive_from_next_upper_layer(@current_protocol_data_unit)
+      @current_protocol_data_unit = @stack[@current_layer_index].encapsulate(@current_protocol_data_unit)
+      @current_protocol_data_unit = @stack[@current_layer_index].send_to_next_lower_layer(@current_protocol_data_unit)
+      @current_layer_index-=1
     end
-
-    data = @stack[0].encapsulate(data)
-    @stack[0].send_to_next_lower_layer( data ) # Return the data from the bottom layer
-    Output::print_with_delay("Bottom layer sent data: #{data}")
   end
 
 
@@ -35,17 +44,25 @@ class BaseSimulation
 
 
   # Simulate receiving data through the network stack starting from the bottom
-  def receive_data(data)
+  def receive_data(data, start_index, end_index)
 
-    top_layer_index = @stack.length - 1
+    log("Beginning a traversal of layers #{start_index} to #{end_index} with data #{data}")
 
-    0.upto(top_layer_index - 1) do |index|  # iterate through the layers
-      @stack[index + 1].receive_from_next_lower_layer(@stack[index].send_to_next_upper_layer(@stack[index].decapsulate(data)) ) # send the data to the layer above
+    @current_protocol_data_unit = data
+    puts @current_protocol_data_unit
+    @current_layer_index = 0
+
+    while @current_layer_index <= @stack.length - 1
+      @current_protocol_data_unit = @stack[@current_layer_index].receive_from_next_lower_layer(@current_protocol_data_unit)
+      @current_protocol_data_unit = @stack[@current_layer_index].decapsulate(@current_protocol_data_unit)
+      @current_protocol_data_unit = @stack[@current_layer_index].send_to_next_upper_layer(@current_protocol_data_unit)
+      @current_layer_index+=1
     end
-
-    @stack[top_layer_index].send_to_next_lower_layer(@stack[top_layer_index].decapsulate(data)) # Return the data from the top layer
-    Output::print_with_delay("Top layer received data: #{data}")
   end
 
+
+  def log(data)
+    UILogger::log(data)
+  end
 
 end

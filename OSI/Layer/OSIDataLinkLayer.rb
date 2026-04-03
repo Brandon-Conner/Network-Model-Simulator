@@ -16,32 +16,38 @@ class OSIDataLinkLayer < BaseNetworkLayer
   end
 
   def encapsulate(data)
-
+    log(data)
+    data
   end
 
   def decapsulate(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_upper_layer(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_lower_layer(data)
-
+    log(data)
+    data
   end
 
   def receive_from_next_upper_layer(data)
-
+    log(data)
+    data
   end
 
   # Accepts packets from the network layer and encapsulates them into "frames,"
   # adding physical addresses (MAC addresses) and error-checking information (FCS)
   def receive_from_next_lower_layer(data)
-
+    log(data)
+    data
   end
 
   def log(data)
-
+    super(data)
   end
 end

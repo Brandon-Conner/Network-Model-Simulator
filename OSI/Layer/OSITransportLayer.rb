@@ -10,37 +10,58 @@ require_relative '../../Abstraction/NetworkLayer'
 
 class OSITransportLayer < BaseNetworkLayer
 
-  def initialize
+  attr_reader :tcp_state_machine
 
+  def initialize
+    @tcp_state_machine = TcpStateMachine.new
   end
 
 
   def encapsulate(data)
-
+    log(data)
+    data
   end
 
   def decapsulate(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_upper_layer(data)
-
+    log(data)
+    data
   end
 
   def send_to_next_lower_layer(data)
-
+    log(data)
+    data
   end
 
   def receive_from_next_upper_layer(data)
+    @data = data
+    if tcp_state_machine.established?
+      @data
+    else
+      perform_tcp_handshake
+      data
+    end
 
   end
 
   def receive_from_next_lower_layer(data)
-
+    log(data)
+    data
   end
 
   def log(data)
+    super(data)
+  end
 
+
+
+  def perform_tcp_handshake
+    tcp_state_machine.send_syn;       log('SYN success')
+    tcp_state_machine.recv_syn_ack;   log('SYN-ACK success')
   end
 
 
@@ -60,22 +81,22 @@ class OSITransportLayer < BaseNetworkLayer
       @state = STATES[:closed]
     end
 
-    def send_syn!
+    def send_syn
       raise "invalid transition" unless @state == STATES[:closed]
       @state = STATES[:syn_sent]
     end
 
-    def recv_syn!
+    def recv_syn
       raise "invalid transition" unless @state == STATES[:closed]
       @state = STATES[:syn_received]
     end
 
-    def recv_syn_ack!
+    def recv_syn_ack
       raise "invalid transition" unless @state == STATES[:syn_sent]
       @state = STATES[:established]
     end
 
-    def send_ack!
+    def send_ack
       raise "invalid transition" unless @state == STATES[:syn_received]
       @state = STATES[:established]
     end
